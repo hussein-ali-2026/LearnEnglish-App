@@ -1,0 +1,279 @@
+/* =========================================================
+   1. المتغيرات والألوان الفاتحة والجذابة (Light Theme)
+   ========================================================= */
+:root {
+    --bg-light: #f4f6fc;         /* خلفية ناعمة وفاتحة جدًا مريحة للعين */
+    --card-bg: #ffffff;         /* أبيض نقي للبطاقات والحاوية */
+    --card-border: #e2e8f0;     /* حدود خفيفة وأنيقة */
+
+    --primary-yellow: #ffc107;   /* أصفر دافئ وجذاب للأزرار */
+    --yellow-hover: #ffb300;     /* أصفر أغمق قليلاً عند التمرير */
+
+    --purple-accent: #6c5ce7;   /* بنفسجي ملكي جذاب للبطاقة الداخلية */
+    --purple-light: #f3f0ff;    /* بنفسجي فاتح جدًا لخلفية الكرت */
+
+    --blue-accent: #0984e3;     /* أزرق حيوي ونظيف للنصوص والأرقام */
+    --text-dark: #2d3436;       /* أسود/رمادي داكن قاطع ومقروء بوضوح */
+    --text-muted: #636e72;      /* رمادي متوسط للنصوص الفرعية */
+}
+
+/* =========================================================
+   2. إعدادات الصفحة والتوسيط
+   ========================================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    direction: rtl;
+}
+
+/* =========================================================
+   3. الحاوية الرئيسية والتنقل بين الشاشات
+   ========================================================= */
+.app-container {
+    width: 100%;
+    max-width: 480px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 32px 24px;
+    box-shadow: 0 15px 35px rgba(108, 92, 231, 0.1); /* ظلال بنفسجية ناعمة */
+    text-align: center;
+}
+
+.screen {
+    width: 100%;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.app-container h1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+/* =========================================================
+   4. شريط الهيدر والأزرار العلوية
+   ========================================================= */
+.header-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.btn-secondary {
+    background-color: var(--purple-light);
+    color: var(--purple-accent);
+    border: 1px solid rgba(108, 92, 231, 0.2);
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--purple-accent);
+    color: #ffffff;
+}
+
+/* =========================================================
+   5. أزرار اختيار المستويات والتخصصات
+   ========================================================= */
+.levels-group {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.levels-group h3 {
+    font-size: 0.95rem;
+    color: var(--purple-accent);
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.buttons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-level, .btn-it {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 1px solid var(--card-border);
+    background-color: #ffffff;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: right;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.btn-level:hover, .btn-it:hover {
+    border-color: var(--purple-accent);
+    background-color: var(--purple-light);
+    transform: translateX(-4px);
+}
+
+.divider {
+    border: none;
+    border-top: 1px dashed var(--card-border);
+    margin: 20px 0;
+}
+
+/* =========================================================
+   6. صندوق المستوى والإحصائيات
+   ========================================================= */
+.level-box {
+    background: #f8f9fe;
+    border: 1px solid #e0e6ed;
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.level-box h3 {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.level-box h3 span {
+    color: var(--purple-accent);
+    font-weight: 700;
+}
+
+.level-box p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.level-box p span {
+    color: var(--blue-accent);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* =========================================================
+   7. كرت الكلمة التفاعلي
+   ========================================================= */
+.card-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background-color: var(--purple-light);
+    border: 2px dashed rgba(108, 92, 231, 0.3);
+    border-radius: 20px;
+    padding: 24px 18px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+/* =========================================================
+   8. الأزرار الرئيسية والإشعارات
+   ========================================================= */
+#next-btn, .btn-primary {
+    width: 100%;
+    background-color: var(--primary-yellow);
+    color: var(--text-dark);
+    border: none;
+    border-radius: 14px;
+    padding: 16px 24px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 15px rgba(255, 193, 7, 0.4);
+}
+
+#next-btn:hover, .btn-primary:hover {
+    background-color: var(--yellow-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 193, 7, 0.5);
+}
+
+#next-btn:active, .btn-primary:active {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   9. شاشة الكلمات الصعبة والإعدادات
+   ========================================================= */
+.settings-box, .list-container {
+    background: #f8f9fe;
+    border: 1px solid #e0e6ed;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.settings-box h3, .list-container h3 {
+    font-size: 0.95rem;
+    color: var(--purple-accent);
+    margin-bottom: 10px;
+}
+
+.form-select {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    margin: 8px 0 14px 0;
+    font-size: 0.9rem;
+    outline: none;
+    color: var(--text-dark);
+}
+
+#hard-words-list-container {
+    max-height: 220px;
+    overflow-y: auto;
+    padding-left: 4px;
+}

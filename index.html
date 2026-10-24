@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة IT النكية لتعلم الإنجليزية</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- 1. شاشة اختيار المستويات (تظهر أولاً) -->
+        <div id="level-selection-screen" class="screen">
+            <h1>اختر مستوى أو تخصص للبدء</h1>
+            <p class="subtitle">ابدأ التعلم الآن وتطوير مهاراتك</p>
+           
+            <!-- مستويات اللغة الإنجليزية -->
+            <div class="levels-group">
+                <h3>مستويات اللغة الإنجليزية</h3>
+                <div class="buttons-grid">
+                    <button onclick="selectLevel('A1')" class="btn-level a1">🟢 المبتدئ الأساسي (A1)</button>
+                    <button onclick="selectLevel('A2')" class="btn-level a2">🟢 المبتدئ المتقدم (A2)</button>
+                    <button onclick="selectLevel('B1')" class="btn-level b1">🟡 المتوسط (B1)</button>
+                    <button onclick="selectLevel('B2')" class="btn-level b2">🟡 المتوسط المتقدم (B2)</button>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <!-- قسم تخصص تقنية المعلومات -->
+            <div class="levels-group">
+                <h3>قسم تخصص تقنية المعلومات (IT)</h3>
+                <div class="buttons-grid">
+                    <button onclick="selectLevel('IT-Database')" class="btn-it">🗄️ مفاهيم قواعد البيانات (Database Concepts)</button>
+                    <button onclick="selectLevel('IT-OOP')" class="btn-it">💻 برمجة الكائنات الموجهة (OOP-java)</button>
+                    <button onclick="selectLevel('IT-Architecture')" class="btn-it">🖥️ كلمات ومفاهيم عامة  (Words and Concepts)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. شاشة التطبيق الرئيسية (مخفية افتراضياً) -->
+        <div id="app-main-screen" class="screen" style="display: none;">
+            <div class="header-bar">
+                <h1>منصة تعلم الإنجليزية ومصطلحات IT</h1>
+                <div class="nav-buttons">
+                    <button onclick="goBackToLevels()" class="btn-secondary">المستويات</button>
+                    <button onclick="openHardWordsPage()" class="btn-secondary">الكلمات الصعبة ⭐</button>
+                </div>
+            </div>
+
+            <div class="level-box">
+                <h3>المستوى الحالي: <span id="current-level">A1</span></h3>
+                <p>الكلمات المحفوظة: <span id="words-count">0</span></p>
+            </div>
+
+            <!-- بطاقة عرض الكلمات والأزرار بجانبها -->
+            <div class="card-section">
+                <div id="word-card" class="card">
+                    <!-- يتم تعبئتها تلقائياً بجافا سكربت -->
+                </div>
+                <button id="next-btn" onclick="nextWord()" class="btn-primary">الكلمة التالية</button>
+            </div>
+        </div>
+
+        <!-- 3. شاشة إدارة الكلمات الصعبة والإشعارات -->
+        <div id="hard-words-screen" class="screen" style="display: none;">
+            <div class="header-bar">
+                <h2>إدارة الكلمات الصعبة والإشعارات ⭐</h2>
+                <button onclick="closeHardWordsPage()" class="btn-secondary">إغلاق</button>
+            </div>
+           
+            <div class="settings-box">
+                <h3>إعدادات التذكير والإشعارات</h3>
+                <label for="spaced-interval">فترة المراجعة التلقائية:</label>
+                <select id="spaced-interval" class="form-select">
+                    <option value="1">مراجعة بعد يوم واحد</option>
+                    <option value="2">مراجعة بعد يومين</option>
+                    <option value="3">مراجعة بعد 3 أيام</option>
+                    <option value="7">مراجعة بعد أسبوع</option>
+                </select>
+                <button onclick="saveNotificationSettings()" class="btn-primary">حفظ الإعدادات</button>
+            </div>
+
+            <div class="list-container">
+                <h3>قائمة الكلمات الصعبة ومستوياتها</h3>
+                <div id="hard-words-list-container">
+                    <!-- يتم عرض الكلمات هنا برمجياً -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="words-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
