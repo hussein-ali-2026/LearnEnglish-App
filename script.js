@@ -6,6 +6,28 @@ const hardWordsDetailed = [];
 const levelprogress = {}; // لحفظ آخر index لكل مستوى
 
 // =========================================================
+// 0. تحميل البيانات المحفوظة من ذاكرة المتصفح (localStorage)
+// =========================================================
+function loadSavedProgress() {
+    try {
+        const savedProgress = localStorage.getItem('levelprogress');
+        if (savedProgress) {
+            Object.assign(levelprogress, JSON.parse(savedProgress));
+        }
+       
+        const savedHardWords = localStorage.getItem('hardWordsDetailed');
+        if (savedHardWords) {
+            const parsed = JSON.parse(savedHardWords);
+            hardWordsDetailed.push(...parsed);
+        }
+    } catch (e) {
+        console.log("حدث خطأ أثناء تحميل البيانات المحفوظة:", e);
+    }
+}
+// تشغيل التحميل التلقائي فور تحميل السكريبت
+loadSavedProgress();
+
+// =========================================================
 // 1. دالة اختيار المستوى والتحول لشاشة التعلم
 // =========================================================
 function selectLevel(level) {
@@ -119,7 +141,10 @@ function displayWord() {
     `;
 
     document.getElementById("words-count").innerText = learnedWords.size;
+   
+    // حفظ التقدم الحالي لهذا المستوى في المتصفح تلقائياً
     levelprogress[currentLevel] = currentIndex;
+    localStorage.setItem('levelprogress', JSON.stringify(levelprogress));
 }
 
 // الانتقال للكلمة التالية
@@ -180,6 +205,10 @@ function saveHardWord() {
 
     if (!hardWordsDetailed.some(item => item.word === currentData.word)) {
         hardWordsDetailed.push(currentData);
+       
+        // حفظ القائمة المحدثة في المتصفح
+        localStorage.setItem('hardWordsDetailed', JSON.stringify(hardWordsDetailed));
+       
         const countEl = document.getElementById("hard-count");
         if (countEl) countEl.innerText = hardWordsDetailed.length;
         alert(`⭐ تم حفظ "${currentData.word}" بنجاح في الكلمات الصعبة!`);
@@ -232,6 +261,10 @@ function renderHardWordsList() {
 function removeHardWord(index) {
     if (index > -1 && index < hardWordsDetailed.length) {
         hardWordsDetailed.splice(index, 1);
+       
+        // تحديث الحفظ في المتصفح بعد الحذف
+        localStorage.setItem('hardWordsDetailed', JSON.stringify(hardWordsDetailed));
+       
         renderHardWordsList();
         const countEl = document.getElementById("hard-count");
         if (countEl) countEl.innerText = hardWordsDetailed.length;
