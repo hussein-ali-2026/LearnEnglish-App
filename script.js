@@ -1,31 +1,11 @@
+// استرجاع التقدم والكلمات الصعبة المحفوظة مسبقاً في المتصفح (الحفظ التلقائي)
 let currentLevel = 'A1';
 let filteredWords = [];
 let currentIndex = 0;
 const learnedWords = new Set();
-const hardWordsDetailed = [];
-const levelprogress = {}; // لحفظ آخر index لكل مستوى
 
-// =========================================================
-// 0. تحميل البيانات المحفوظة من ذاكرة المتصفح (localStorage)
-// =========================================================
-function loadSavedProgress() {
-    try {
-        const savedProgress = localStorage.getItem('levelprogress');
-        if (savedProgress) {
-            Object.assign(levelprogress, JSON.parse(savedProgress));
-        }
-       
-        const savedHardWords = localStorage.getItem('hardWordsDetailed');
-        if (savedHardWords) {
-            const parsed = JSON.parse(savedHardWords);
-            hardWordsDetailed.push(...parsed);
-        }
-    } catch (e) {
-        console.log("حدث خطأ أثناء تحميل البيانات المحفوظة:", e);
-    }
-}
-// تشغيل التحميل التلقائي فور تحميل السكريبت
-loadSavedProgress();
+let hardWordsDetailed = JSON.parse(localStorage.getItem('hardWordsDetailed')) || [];
+let levelprogress = JSON.parse(localStorage.getItem('levelprogress')) || {};
 
 // =========================================================
 // 1. دالة اختيار المستوى والتحول لشاشة التعلم
@@ -33,7 +13,7 @@ loadSavedProgress();
 function selectLevel(level) {
     currentLevel = level;
 
-    // تصفية الكلمات الخاصة بالمستوى أو التخصص المختار
+    // تصفية الكلمات الخاصة بالمستوى أو Tالتخصص المختار
     filteredWords = WardsData.filter(item => item.level && (item.level.includes(level) || item.level === level));
 
     if (filteredWords.length === 0) {
@@ -133,7 +113,12 @@ function displayWord() {
         <div style="margin-top: 15px; text-align: center;">
             <label style="font-size: 0.85rem; color: #636e7a; display: block; margin-bottom: 6px;">اكتب الكلمة للتمرن على الإملاء:</label>
             <div style="display: flex; gap: 8px; justify-content: center; align-items: center;">
-                <input type="text" id="practice-input" placeholder="اكتب هنا..." onkeydown="if(event.key === 'Enter') checkSpellingAnswer('${currentData.word}')" style="font-size: 1.1rem; text-align: center; padding: 8px 12px; border: 2px solid #cbd5e1; border-radius: 10px; width: 65%; outline: none; color: #2d3436;" autocomplete="off">
+                <!-- حقل الإدخال مؤمن ليقبل الحروف الإنجليزية فقط -->
+                <input type="text" id="practice-input" placeholder="اكتب هنا..."
+                    oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')"
+                    onkeydown="if(event.key === 'Enter') checkSpellingAnswer('${currentData.word}')"
+                    style="font-size: 1.1rem; text-align: center; padding: 8px 12px; border: 2px solid #cbd5e1; border-radius: 10px; width: 65%; outline: none; color: #2d3436;" autocomplete="off">
+               
                 <button onclick="checkSpellingAnswer('${currentData.word}')" style="background: #0984e3; color: white; border: none; border-radius: 10px; padding: 9px 14px; font-size: 0.9rem; cursor: pointer; font-weight: bold;">تحقق</button>
             </div>
             <p id="spelling-feedback" style="font-size: 0.85rem; font-weight: bold; margin-top: 6px; height: 18px;"></p>
@@ -142,7 +127,7 @@ function displayWord() {
 
     document.getElementById("words-count").innerText = learnedWords.size;
    
-    // حفظ التقدم الحالي لهذا المستوى في المتصفح تلقائياً
+    // حفظ التقدم تلقائياً عند الانتقال بين الكلمات وفي المتصفح
     levelprogress[currentLevel] = currentIndex;
     localStorage.setItem('levelprogress', JSON.stringify(levelprogress));
 }
@@ -197,7 +182,7 @@ function checkSpellingAnswer(correctWord) {
 }
 
 // =========================================================
-// 5. إدارة الكلمات الصعبة
+// 5. إدارة الكلمات الصعبة وحفظها تلقائياً
 // =========================================================
 function saveHardWord() {
     if (!filteredWords || filteredWords.length === 0) return;
@@ -205,10 +190,9 @@ function saveHardWord() {
 
     if (!hardWordsDetailed.some(item => item.word === currentData.word)) {
         hardWordsDetailed.push(currentData);
-       
-        // حفظ القائمة المحدثة في المتصفح
+        // حفظ الكلمات الصعبة في المتصفح لكي لا تختفي عند إغلاق المتصفح
         localStorage.setItem('hardWordsDetailed', JSON.stringify(hardWordsDetailed));
-       
+
         const countEl = document.getElementById("hard-count");
         if (countEl) countEl.innerText = hardWordsDetailed.length;
         alert(`⭐ تم حفظ "${currentData.word}" بنجاح في الكلمات الصعبة!`);
@@ -261,10 +245,8 @@ function renderHardWordsList() {
 function removeHardWord(index) {
     if (index > -1 && index < hardWordsDetailed.length) {
         hardWordsDetailed.splice(index, 1);
-       
-        // تحديث الحفظ في المتصفح بعد الحذف
+        // تحديث الحفظ التلقائي بعد الحذف
         localStorage.setItem('hardWordsDetailed', JSON.stringify(hardWordsDetailed));
-       
         renderHardWordsList();
         const countEl = document.getElementById("hard-count");
         if (countEl) countEl.innerText = hardWordsDetailed.length;
