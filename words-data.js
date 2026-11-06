@@ -211,9 +211,62 @@ const WardsData = [
 
 
  // مفاهيم قواعد البيانات (IT-Database)
-   
+  // ==========================================
+  // قسم قواعد البيانات: المحاضرة الأولى (IT-Database)
+  // ==========================================
+  { word: "Database", translation: "قاعدة بيانات", example: "A database is a digital repository for storing and securing data.", exampleTranslation: "قاعدة البيانات هي مستودع رقمي لتخزين وتأمين البيانات.", level: "IT-Database" },
+  { word: "Data", translation: "بيانات (خام)", example: "Data refers to raw, unorganized facts and figures.", exampleTranslation: "تشير البيانات إلى الحقائق والأرقام الخام غير المنظمة.", level: "IT-Database" },
+  { word: "Information", translation: "معلومات (معالجة)", example: "Data is processed to extract meaningful information.", exampleTranslation: "تتم معالجة البيانات لاستخراج معلومات ذات معنى.", level: "IT-Database" },
+  { word: "Metadata", translation: "بيانات وصفية (بيانات عن البيانات)", example: "Metadata describes the structure and properties of stored data.", exampleTranslation: "البيانات الوصفية تصف هيكل وخصائص البيانات المخزنة.", level: "IT-Database" },
+  { word: "DBMS (Database Management System)", translation: "نظام إدارة قواعد البيانات", example: "DBMS is software that manages databases efficiently.", exampleTranslation: "نظام إدارة قواعد البيانات هو برنامج يدير قواعد البيانات بكفاءة.", level: "IT-Database" },
+  { word: "File-Based System", translation: "نظام يعتمد على الملفات", example: "File-based systems suffer from data redundancy and security issues.", exampleTranslation: "الأنظمة التي تعتمد على الملفات تعاني من تكرار البيانات ومشاكل الأمان.", level: "IT-Database" },
+  { word: "Data Redundancy", translation: "تكرار البيانات", example: "The same data is stored in multiple files, wasting space.", exampleTranslation: "يتم تخزين نفس البيانات في ملفات متعددة مما يهدر المساحة.", level: "IT-Database" },
+  { word: "Data Inconsistency", translation: "تناقض / عدم اتساق البيانات", example: "Different files contain conflicting versions of the same data.", exampleTranslation: "تحتوي الملفات المختلفة على نسخ متضاربة لنفس البيانات.", level: "IT-Database" },
+  { word: "Primary Key", translation: "المفتاح الأساسي", example: "A primary key uniquely identifies each record in a table.", exampleTranslation: "المفتاح الأساسي يحدد كل سجل في الجدول بشكل فريد.", level: "IT-Database" },
+  { word: "Foreign Key", translation: "المفتاح الأجنبي", example: "A foreign key connects related tables together.", exampleTranslation: "المفتاح الأجنبي يربط الجداول المرتبطة ببعضها.", level: "IT-Database" },
+  { word: "SQL (Structured Query Language)", translation: "لغة الاستعلام المهيكلة", example: "Most databases use structured query language for querying data.", exampleTranslation: "تستخدم معظم قواعد البيانات لغة الاستعلام المهيكلة للاستعلام عن البيانات.", level: "IT-Database" },
+  { word: "CRUD Operations", translation: "عمليات الإنشاء والقراءة والتحديث والحذف", example: "CRUD represents the four basic actions performed on a database.", exampleTranslation: "تمثل عمليات CRUD الحركات الأساسية الأربع التي يتم إجراؤها على قاعدة البيانات.", level: "IT-Database" },
+  { word: "ACID Transactions", translation: "معاملات أسيد (الموثوقية)", example: "ACID properties ensure safe and reliable database transactions.", exampleTranslation: "خصائص ACID تضمن معاملات آمنة وموثوقة لقاعدة البيانات.", level: "IT-Database" },
+  { word: "Atomicity", translation: "الذرية (في المعاملات)", example: "Atomicity ensures all steps of a transaction succeed or none do.", exampleTranslation: "الذرية تضمن نجاح جميع خطوات المعاملة أو فشلها مجتمعة.", level: "IT-Database" },
+  { word: "Consistency", translation: "التناسق (في البيانات)", example: "Consistency ensures data always follows defined rules.", exampleTranslation: "التناسق يضمن أن البيانات تتبع دائماً القواعد المحددة.", level: "IT-Database" },
+  { word: "Isolation", translation: "العزل (بين المعاملات)", example: "Isolation ensures each transaction runs independently.", exampleTranslation: "العزل يضمن تشغيل كل معاملة بشكل مستقل.", level: "IT-Database" },
+  { word: "Durability", translation: "الاستمرارية / المتانة", example: "Durability ensures changes remain even after system failure.", exampleTranslation: "الاستمرارية تضمن بقاء التغييرات حتى بعد تعطل النظام.", level: "IT-Database" },
+  { word: "Integrity Constraints", translation: "قيود السلامة / التكامل", example: "Integrity constraints like NOT NULL keep data accurate.", exampleTranslation: "قيود التكامل مثل عدم الفراغ تبقي البيانات دقيقة.", level: "IT-Database" },
+  { word: "Relational Database", translation: "قاعدة بيانات علائقية", example: "Relational databases store data in rows and columns in tables.", exampleTranslation: "قواعد البيانات العلائقية تخزن البيانات في صفوف وأعمدة في جداول.", level: "IT-Database" },
+  { word: "Non-Relational Database (NoSQL)", translation: "قاعدة بيانات غير علائقية", example: "NoSQL databases store data in flexible formats like documents.", exampleTranslation: "قواعد بيانات NoSQL تخزن البيانات بتنسيقات مرنة مثل المستندات.", level: "IT-Database" },
+  { word: "Schema", translation: "مخطط قاعدة البيانات (ال هيكل)", example: "Relational databases follow a fixed schema.", exampleTranslation: "قواعد البيانات العلائقية تتبع مخططاً ثابتاً.", level: "IT-Database" },
+  { word: "ERD (Entity Relationship Diagram)", translation: "مخطط العلاقة بين الكيانات", example: "The database designer creates an ERD to plan data structure.", exampleTranslation: "يصمم مصمم قواعد البيانات مخطط ERD لتخطيط هيكل البيانات.", level: "IT-Database" },
+  { word: "Entity", translation: "كيان / كينونة", example: "Entities are the main objects in your system like Student.", exampleTranslation: "الكيانات هي الكائنات الرئيسية في نظامك مثل الطالب.", level: "IT-Database" },
+  { word: "Attribute", translation: "خاصية / صفة", example: "Attributes are properties that describe each entity like Name.", exampleTranslation: "الخصائص هي الصفات التي تصف كل كيان مثل الاسم.", level: "IT-Database" },
+  { word: "Relationship", translation: "علاقة", example: "Relationships define how entities connect with each other.", exampleTranslation: "العلائق تحدد كيف ترتبط الكيانات ببعضها البعض.", level: "IT-Database" },
+  { word: "Database Catalog", translation: "كتالوج قاعدة البيانات", example: "The database catalog stores all metadata automatically.", exampleTranslation: "كتالوج قاعدة البيانات يخزن جميع البيانات الوصفية تلقائياً.", level: "IT-Database" },
+  { word: "Business Analyst (BA)", translation: "محلل أعمال", example: "The business analyst gathers system requirements from the client.", exampleTranslation: "محلل الأعمال يجمع متطلبات النظام من العميل.", level: "IT-Database" },
+  { word: "Database Administrator (DBA)", translation: "مدير قاعدة البيانات", example: "The DBA builds, secures, and maintains the database.", exampleTranslation: "مدير قاعدة البيانات يقوم ببناء وتأمين وصيانة قاعدة البيانات.", level: "IT-Database" },
+  { word: "Scalability", translation: "قابلية التوسع", example: "NoSQL databases are designed for high scalability and speed.", exampleTranslation: "قواعد بيانات NoSQL مصممة لتوفير قابلية توسع وسرعة عالية.", level: "IT-Database" },
+  { word: "Concurrency", translation: "التزامن (استخدام متعدد)", example: "Concurrency issues occur when multiple users update the same file.", exampleTranslation: "تحدث مشاكل التزامن عندما يقوم عدة مستخدمين بتحديث نفس الملف.", level: "IT-Database" },   
 
-
+  // ==========================================
+  // قسم قواعد البيانات: المحاضرة الثانية - لغة SQL (IT-Database)
+  // ==========================================
+  { word: "DDL (Data Definition Language)", translation: "لغة تعريف البيانات", example: "DDL commands like CREATE and DROP define the database structure.", exampleTranslation: "أوامر DDL مثل CREATE و DROP تعرّف هيكل قاعدة البيانات.", level: "IT-Database" },
+  { word: "DML (Data Manipulation Language)", translation: "لغة معالجة البيانات", example: "DML commands like INSERT and UPDATE manage data rows.", exampleTranslation: "أوامر DML مثل INSERT و UPDATE تدير صفوف البيانات.", level: "IT-Database" },
+  { word: "CREATE TABLE", translation: "إنشاء جدول", example: "CREATE TABLE students (id NUMBER, name VARCHAR2(50));", exampleTranslation: "إنشاء جدول الطلاب (المعرف، الاسم).", level: "IT-Database" },
+  { word: "ALTER TABLE", translation: "تعديل جدول", example: "ALTER TABLE students ADD email VARCHAR2(60);", exampleTranslation: "تعديل الجدول لإضافة عمود البريد الإلكتروني.", level: "IT-Database" },
+  { word: "DROP TABLE", translation: "حذف جدول بالكامل", example: "DROP TABLE test_tmp;", exampleTranslation: "حذف جدول الاختبار مؤقتًا بالكامل.", level: "IT-Database" },
+  { word: "DESC (Describe)", translation: "وصف هيكل الجدول", example: "DESC students;", exampleTranslation: "عرض ووصف أعمدة وأوعية جدول الطلاب.", level: "IT-Database" },
+  { word: "INSERT", translation: "إدراج سجل / صف جديد", example: "INSERT INTO students (id, name) VALUES (101, 'Aisha');", exampleTranslation: "إدراج بيانات طالب جديد في الجدول.", level: "IT-Database" },
+  { word: "UPDATE", translation: "تحديث البيانات الموجودة", example: "UPDATE students SET gpa = 3.90 WHERE id = 102;", exampleTranslation: "تحديث المعدل التراكمي للطالب المعين.", level: "IT-Database" },
+  { word: "DELETE", translation: "حذف صفوف من الجدول", example: "DELETE FROM students WHERE id = 103;", exampleTranslation: "حذف سجل الطالب الذي يحمل المعرف المحدد.", level: "IT-Database" },
+  { word: "COMMIT", translation: "تثبيت التعديلات نهائيًا", example: "COMMIT;", exampleTranslation: "حفظ وتثبيت جميع التعديلات المعلقة بشكل دائم.", level: "IT-Database" },
+  { word: "ROLLBACK", translation: "التراجع عن التعديلات المعلقة", example: "ROLLBACK;", exampleTranslation: "التراجع إلغاء العمليات غير المثبتة منذ آخر حفظ.", level: "IT-Database" },
+  { word: "SAVEPOINT", translation: "نقطة حفظ فرعية", example: "SAVEPOINT checkpoint_a;", exampleTranslation: "إنشاء نقطة حفظ للرجوع إليها لاحقًا عند الحاجة.", level: "IT-Database" },
+  { word: "Primary Key (PK)", translation: "المفتاح الأساسي", example: "STUDENT_ID NUMBER PRIMARY KEY,", exampleTranslation: "معرف الطالب كمفتاح أساسي فريد لكل صف.", level: "IT-Database" },
+  { word: "Constraint", translation: "قيد / شرط على البيانات", example: "Constraints like NOT NULL and UNIQUE enforce rules on columns.", exampleTranslation: "القيود مثل عدم الفراغ تفرض قواعد على الأعمدة.", level: "IT-Database" },
+  { word: "VARCHAR2", translation: "نص متغير الطول", example: "FULL_NAME VARCHAR2(50)", exampleTranslation: "اسم كامل بنص متغير الطول بحد أقصى خمسين حرفًا.", level: "IT-Database" },
+  { word: "Number", translation: "نوع بيانات رقمي", example: "GPA NUMBER(3,2)", exampleTranslation: "المعدل التراكمي برقم عشري محدد الدقة.", level: "IT-Database" },
+  { word: "Date", translation: "نوع بيانات التاريخ", example: "ENROLL_DATE DATE", exampleTranslation: "تاريخ التسجيل بصيغة التاريخ والوقت.", level: "IT-Database" },
+  { word: "SQL*Plus", translation: "بيئة تشغيل أوامر أوراكل", example: "Start SQL*Plus and type commands at the SQL> prompt.", exampleTranslation: "تشغيل أداة SQL*Plus وكتابة الأوامر عند مؤشر الإدخال.", level: "IT-Database" },
+  { word: "TRUNCATE", translation: "فريغ الجدول بالكامل سريعًا", example: "TRUNCATE table removes all rows instantly without WHERE.", exampleTranslation: "أمر تفريغ الجدول يحذف جميع الصفوف فورًا.", level: "IT-Database" },
 
 
 
