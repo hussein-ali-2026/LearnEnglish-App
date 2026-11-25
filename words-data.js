@@ -1,7 +1,7 @@
 // =========================================================
 // قاعدة بيانات الكلمات والمستويات والتخصصات (Words Database)
 // =========================================================
-const WardsData = [
+const WordsData = [
     // مستوى A1 - أساسيات مهمة
     { word: "Hello", translation: "مرحبًا", example: "Hello, how are you?", exampleTranslation: "مرحبًا، كيف حالك؟", level: "المبتدئ (A1)" },
     { word: "Thank you", translation: "شكرًا لك", example: "Thank you for your help.", exampleTranslation: "شكرًا لك على مساعدتك.", level: "المبتدئ (A1)" },
