@@ -1,10 +1,10 @@
-// متغيرات عامة للمنصة
+// متغيرات المنصة الرئيسية
 let currentLevel = "A1";
 let filteredWords = [];
 let currentIndex = 0;
 let learnedWords = [];
 
-// استرجاع البيانات المحفوظة من localStorage
+// استرجاع التقدم والكلمات الصعبة من localStorage
 let hardWordsDetailed = JSON.parse(localStorage.getItem("hardWordsDetailed")) || [];
 let levelprogress = JSON.parse(localStorage.getItem("levelprogress")) || {};
 
@@ -12,8 +12,8 @@ let levelprogress = JSON.parse(localStorage.getItem("levelprogress")) || {};
 function selectLevel(level) {
     currentLevel = level;
 
-    // تصفية الكلمات حسب المستوى المختار
-    filteredWords = WardsData.filter(function (item) {
+    // تصفية الكلمات حسب المستوى أو التخصص المختار
+    filteredWords = WordsData.filter(function (item) {
         return item.level && (item.level.includes(level) || item.level === level);
     });
 
@@ -29,7 +29,7 @@ function selectLevel(level) {
         currentIndex = 0;
     }
 
-    // إعادة تعبئة الكلمات المتعلمة حتى الكلمة الحالية
+    // تجهيز قائمة الكلمات المتعلمة حتى الكلمة الحالية
     learnedWords = [];
     for (let i = 0; i <= currentIndex; i++) {
         if (!learnedWords.includes(filteredWords[i].word)) {
@@ -37,6 +37,7 @@ function selectLevel(level) {
         }
     }
 
+    // تبديل الشاشات
     document.getElementById("level-selection-screen").style.display = "none";
     document.getElementById("app-main-screen").style.display = "block";
 
@@ -44,7 +45,7 @@ function selectLevel(level) {
     displayWord();
 }
 
-// تغيير عنوان المستوى في الواجهة
+// تحديث عنوان المستوى في الواجهة
 function updateLevelTitle(level) {
     let displayTitle = level;
 
@@ -59,13 +60,13 @@ function updateLevelTitle(level) {
     document.getElementById("current-level").innerText = displayTitle;
 }
 
-// الرجوع إلى شاشة اختيار المستويات
+// العودة لشاشة اختيار المستويات
 function goBackToLevels() {
     document.getElementById("app-main-screen").style.display = "none";
     document.getElementById("level-selection-screen").style.display = "block";
 }
 
-// نطق الكلمة أو الجملة باستخدام ميزة المتصفح الصوتية
+// نطق الكلمة أو الجملة صوتياً
 function speakText(text) {
     if ("speechSynthesis" in window) {
         window.speechSynthesis.cancel();
@@ -74,11 +75,11 @@ function speakText(text) {
         utterance.rate = 0.8;
         window.speechSynthesis.speak(utterance);
     } else {
-        console.log("المتصفح لا يدعم النطق الصوتي");
+        console.log("المتصفح لا يدعم النطق الصوتي.");
     }
 }
 
-// عرض بيانات الكلمة الحالية في البطاقة
+// عرض بطاقة الكلمة الحالية وتحديث العدادات
 function displayWord() {
     if (filteredWords.length === 0) return;
 
@@ -129,7 +130,7 @@ function displayWord() {
         </div>
     `;
 
-    // ربط الأحداث بالأزرار والحقول بعد رسم البطاقة
+    // ربط الأحداث بالأزرار والحقول
     document.getElementById("save-hard-btn").addEventListener("click", saveHardWord);
     document.getElementById("prev-word-btn").addEventListener("click", prevWord);
     document.getElementById("next-word-btn").addEventListener("click", nextWord);
@@ -142,7 +143,6 @@ function displayWord() {
 
     let practiceInput = document.getElementById("practice-input");
     practiceInput.addEventListener("input", function () {
-        // السماح بالحروف الإنجليزية والمسافات والشرطة فقط
         this.value = this.value.replace(/[^a-zA-Z\s-]/g, "");
     });
     practiceInput.addEventListener("keydown", function (event) {
@@ -155,15 +155,15 @@ function displayWord() {
         checkSpellingAnswer(currentData.word);
     });
 
-    // تحديث عداد الكلمات المتعلمة
+    // تحديث عداد الكلمات المحفوظة في الواجهة
     document.getElementById("words-count").innerText = learnedWords.length;
 
-    // حفظ تقدم المستخدم في localStorage
+    // حفظ تقدم المستخدم تلقائياً
     levelprogress[currentLevel] = currentIndex;
     localStorage.setItem("levelprogress", JSON.stringify(levelprogress));
 }
 
-// الكلمة التالية
+// الانتقال للكلمة التالية
 function nextWord() {
     currentIndex++;
     if (currentIndex >= filteredWords.length) {
@@ -172,7 +172,7 @@ function nextWord() {
     displayWord();
 }
 
-// الكلمة السابقة
+// الانتقال للكلمة السابقة
 function prevWord() {
     currentIndex--;
     if (currentIndex < 0) {
@@ -181,7 +181,7 @@ function prevWord() {
     displayWord();
 }
 
-// التحقق من كتابة الكلمة
+// التحقق من الإملاء
 function checkSpellingAnswer(correctWord) {
     let inputField = document.getElementById("practice-input");
     let feedback = document.getElementById("spelling-feedback");
@@ -210,7 +210,7 @@ function checkSpellingAnswer(correctWord) {
     }
 }
 
-// حفظ الكلمة الحالية في قائمة الكلمات الصعبة
+// حفظ الكلمة في قائمة الكلمات الصعبة
 function saveHardWord() {
     if (filteredWords.length === 0) return;
 
@@ -276,7 +276,6 @@ function renderHardWordsList() {
 
     container.innerHTML = htmlContent;
 
-    // ربط أزرار الحذف بعد رسم القائمة
     let deleteButtons = container.querySelectorAll(".delete-hard-btn");
     for (let i = 0; i < deleteButtons.length; i++) {
         deleteButtons[i].addEventListener("click", function () {
@@ -298,7 +297,7 @@ function removeHardWord(index) {
     }
 }
 
-// حفظ إعدادات المراجعة والإشعارات
+// حفظ إعدادات التذكير والإشعارات
 function saveNotificationSettings() {
     let intervalVal = document.getElementById("spaced-interval").value;
     alert("✅ تم حفظ إعدادات الإشعارات بنجاح!\n- تكرار المراجعة: بعد " + intervalVal + " أيام.");
